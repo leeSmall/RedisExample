@@ -1,0 +1,12 @@
+下载链接：https://pan.baidu.com/s/1kWsf3Rh 密码：n3pc
+从这个链接下载  ruby-2.3.1.tar.gz   和  redis-3.3.0.gem
+  tar -zxvf ruby-2.3.1.tar.gz 
+  a,  cd ruby-2.3.1
+  b,  ./configure -prefix=/usr/local/ruby
+  c,  make && make install   //过程会有点慢，大概5－10分钟
+  d,  然后gem install -l redis-3.3.0.gem  //若没有gem需要安装yum install gem -y
+  e, 准备好6个节点配置文件redis6379.conf....redis6391.conf, 加上bind 192.168.1.111
+  f,（注意不要设置requirepass,不然./redis-trib访问不了……）,将/usr/local/bin/clusterconf/data的config-file删除；
+  g, 依次启动6个节点：./redis-server clusterconf/redis6379.conf
+  h, 如果之前redis有数据存在，flushall清空；(坑:不需要cluster meet ..)
+  i, ./redis-trib.rb create --replicas 1 192.168.1.111:6379 192.168.1.111:6380 192.168.1.111:6381 192.168.1.111:6389 192.168.1.111:6390 192.168.1.111:6391
