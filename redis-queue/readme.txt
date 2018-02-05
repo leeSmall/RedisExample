@@ -1,0 +1,1 @@
+redis队列：使用redis的列表实现，业务比较单一，没有ActiveMQ这些消息队列专业，如果业务比较复杂还是建议使用ActiveMQ
